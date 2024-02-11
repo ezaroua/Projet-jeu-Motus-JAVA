@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="800.0" style="-fx-background-color: #0B4769;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.motus.GameSixLengthWordController">
+   <children>
+      <AnchorPane prefHeight="578.0" prefWidth="824.0">
+         <children>
+            <ImageView fitHeight="55.0" fitWidth="200.0" layoutX="260.0" layoutY="14.0">
+               <image>
+                  <Image url="@Image%20Tusmo.png" />
+               </image>
+            </ImageView>
+            <GridPane fx:id="gridPane" layoutX="290.0" layoutY="120.0" style="-fx-border-color: white; -fx-border-width: 1;">
+    <columnConstraints>
+        <ColumnConstraints prefWidth="35.0" />
+        <ColumnConstraints prefWidth="35.0" />
+        <ColumnConstraints prefWidth="35.0" />
+        <ColumnConstraints prefWidth="35.0" />
+        <ColumnConstraints prefWidth="35.0" />
+        <ColumnConstraints prefWidth="35.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="35.0" />
+        <RowConstraints prefHeight="35.0" />
+        <RowConstraints prefHeight="35.0" />
+        <RowConstraints prefHeight="35.0" />
+        <RowConstraints prefHeight="35.0" />
+        <RowConstraints prefHeight="35.0" />
+    </rowConstraints>
+</GridPane>
+
+            <Button fx:id="btnA" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="A"  textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="btnZ" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="Z" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnE" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="E" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnR" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="R" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnT" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="T" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnY" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="Y" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnU" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="408.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="U" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnI" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="447.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="I" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnO" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="486.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="O" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnP" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="P" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnQ" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="174.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="Q" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnS" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="S" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnD" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="D" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnF" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="F" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnG" onAction="#onAlphabetButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="G" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnH" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="H" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnJ" alignment="CENTER" contentDisplay="CENTER" layoutX="408.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="J" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnK" alignment="CENTER" contentDisplay="CENTER" layoutX="447.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="K" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnL" alignment="CENTER" contentDisplay="CENTER" layoutX="486.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="L" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnM" alignment="CENTER" contentDisplay="CENTER" layoutX="525.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="M" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnW" alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="433.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="W" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnX" alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="433.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="X" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnC" alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="433.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="C" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnV" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="433.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="V" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnB" alignment="CENTER" contentDisplay="CENTER" layoutX="408.0" layoutY="433.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="B" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnN" alignment="CENTER" contentDisplay="CENTER" layoutX="447.0" layoutY="433.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="35.0" style="-fx-background-color: transparant; -fx-border-color: white; -fx-border-radius: 3; -fx-font-weight: bold;" text="N" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnSupr" alignment="CENTER" contentDisplay="CENTER" layoutX="176.0" layoutY="437.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" style="-fx-border-radius: 3; -fx-font-weight: bold; -fx-background-color: white;" text="Supr." textAlignment="CENTER" textFill="#0b4769">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnValid" alignment="CENTER" contentDisplay="CENTER" layoutX="492.0" layoutY="437.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" style="-fx-border-radius: 3; -fx-font-weight: bold; -fx-background-color: white;" text="Valid." textAlignment="CENTER" textFill="#0b4769">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnMenuPrincipal" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="121.0" style="-fx-border-radius: 3; -fx-font-weight: bold; -fx-background-color: white;" text="Menu Principal" textAlignment="CENTER" textFill="#0b4769">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
