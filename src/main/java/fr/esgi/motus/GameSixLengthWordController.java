@@ -11,6 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.esgi.motus.business.Word;
+import fr.esgi.motus.service.impl.WordRepoServiceImpl;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.CornerRadii;
@@ -36,11 +39,17 @@ public class GameSixLengthWordController {
     private int ligne = 0;
     private static final Background BACKGROUND_BLEU = new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY));
 
+    private WordRepoServiceImpl wordService = WordRepoServiceImpl.getInstance();
+    private Word currentWord;
+    private StringBuilder currentAttempt = new StringBuilder();
 
     @FXML
     private GridPane gridPane;
 
     public void initialize() {
+    	 wordService.importWords();
+         currentWord = wordService.getRandomWordByLength(6); // Suppose you're playing with 6-letter words.
+      
         gridPane.getChildren().clear(); // Nettoyer la grille avant de l'initialiser
 
         for (int row = 0; row < 6; row++) { // Supposons que vous avez 6 lignes
@@ -101,6 +110,33 @@ public class GameSixLengthWordController {
         return null; // No label found at the specified row and column
     }
 
+    @FXML
+    public void onSuprButtonClick(ActionEvent actionEvent) {
+        if (colonne > 0 || (colonne == 0 && ligne > 0)) {
+            // Ajuster les indices de ligne et de colonne pour la suppression
+            if (colonne == 0) {
+                // Si on est au début d'une ligne, passer à la fin de la ligne précédente
+                ligne--;
+                colonne = gridPane.getColumnConstraints().size() - 1;
+            } else {
+                // Sinon, simplement décrémenter l'index de colonne
+                colonne--;
+            }
+
+            // Supprimer la dernière lettre de currentAttempt si non vide
+            if (currentAttempt.length() > 0) {
+                currentAttempt.deleteCharAt(currentAttempt.length() - 1);
+            }
+
+            // Effacer la lettre du label correspondant
+            Label label = getLabelByRowColumn(ligne, colonne);
+            if (label != null) {
+                label.setText("");
+                label.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-font-weight: normal; " +
+                               "-fx-border-color: white; -fx-border-width: 0.5;");
+            }
+        }
+    }
 
     
 }

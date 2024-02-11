@@ -169,7 +169,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="btnSupr" alignment="CENTER" contentDisplay="CENTER" layoutX="176.0" layoutY="437.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" style="-fx-border-radius: 3; -fx-font-weight: bold; -fx-background-color: white;" text="Supr." textAlignment="CENTER" textFill="#0b4769">
+            <Button fx:id="btnSupr" onAction="#onSuprButtonClick" alignment="CENTER" contentDisplay="CENTER" layoutX="176.0" layoutY="437.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="66.0" style="-fx-border-radius: 3; -fx-font-weight: bold; -fx-background-color: white;" text="Supr." textAlignment="CENTER" textFill="#0b4769">
                <font>
                   <Font size="14.0" />
                </font>
