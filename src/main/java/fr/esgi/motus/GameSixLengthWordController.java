@@ -2,6 +2,7 @@ package fr.esgi.motus;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
@@ -11,13 +12,14 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import java.util.ArrayList;
 import java.util.List;
-
 import fr.esgi.motus.business.Word;
 import fr.esgi.motus.service.impl.WordRepoServiceImpl;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.CornerRadii;
 import javafx.geometry.Insets;
+import fr.esgi.motus.service.impl.GameServiceImpl;
+
 
 
 
@@ -27,7 +29,8 @@ import javafx.geometry.Insets;
 
 public class GameSixLengthWordController {
 
-
+	private GameServiceImpl gameService;
+    private WordRepoServiceImpl wordRepoService;
 
     private GridPane grille;
     private GridPane caseGrille;
@@ -45,60 +48,68 @@ public class GameSixLengthWordController {
 
     @FXML
     private GridPane gridPane;
+    private boolean isRowCompleted = false; // Nouvel attribut pour suivre si la ligne est complétée
+    private boolean readyForValidation = false;
 
     public void initialize() {
-    	 wordService.importWords();
-         currentWord = wordService.getRandomWordByLength(6); // Suppose you're playing with 6-letter words.
-      
-        gridPane.getChildren().clear(); // Nettoyer la grille avant de l'initialiser
+        gameService = new GameServiceImpl(); // Ensure the game service is initialized
+        wordService = WordRepoServiceImpl.getInstance(); // Ensure the word service is initialized
+        wordService.importWords(); // Import words from the repository
+        currentWord = wordService.getRandomWordByLength(6); // Fetch a random 6-letter word
+        
+        if (currentWord == null) {
+            showAlert("Erreur", "Impossible de démarrer le jeu car aucun mot n'a été trouvé.");
+            return; // Exit if no word is found
+        }
 
-        for (int row = 0; row < 6; row++) { // Supposons que vous avez 6 lignes
-            for (int col = 0; col < 6; col++) { // Supposons que vous avez 6 colonnes
+        gameService.startGame(currentWord); // Start the game with the fetched word
+
+        gridPane.getChildren().clear(); // Clear the grid before initializing
+
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 6; col++) {
                 Label label = new Label();
-                label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE); // Pour remplir la cellule
-                label.setAlignment(Pos.CENTER); // Centrer le texte dans le label
-                label.setFont(new Font("Arial", 24)); // Définir une police, si nécessaire
-                label.setStyle("-fx-border-color: white; -fx-border-width: 1; -fx-background-color: transparent;"); // Dessiner les bordures des cellules
+                label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE); // To fill the cell
+                label.setAlignment(Pos.CENTER); // Center the text in the label
+                label.setFont(new Font("Arial", 24)); // Set a font, if necessary
+                label.setStyle("-fx-border-color: white; -fx-border-width: 1; -fx-background-color: transparent;"); // Draw cell borders
 
-                gridPane.add(label, col, row); // Ajouter le label à la grille à la position spécifiée
+                if (row == 0 && col == 0) {
+                    label.setText(String.valueOf(currentWord.getWord().charAt(0))); // Set the first letter of the word
+                    label.setStyle("-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold; " +
+                                   "-fx-border-color: white; -fx-border-width: 1;");
+                }
+
+                gridPane.add(label, col, row); // Add the label to the grid at the specified position
             }
         }
     }
 
+  
     
  // Saisie de lettre bouton
-
     @FXML
     public void onAlphabetButtonClick(ActionEvent actionEvent) {
+        if (isRowCompleted) { // Ne permettre aucune saisie si la ligne est complète.
+            return;
+        }
+        
         Button boutonSource = (Button) actionEvent.getSource();
         String boutonLettre = boutonSource.getText();
-
-        // Retrieve the label at the current row and column
         Label label = getLabelByRowColumn(ligne, colonne);
-
-        // If a label is found, set its text and style
+        
         if (label != null) {
             label.setText(boutonLettre);
-            // Here you set the background color to blue, text fill to white, and font weight to bold
-            // You also reapply the border color and width to maintain the grid appearance
             label.setStyle("-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold; " +
                            "-fx-border-color: white; -fx-border-width: 0.5;");
+            colonne++;
         }
-
-        // Increment the column index
-        colonne++;
-
-        // If the column index reaches the grid's column count, reset it and increment the row index
-        if (colonne >= gridPane.getColumnConstraints().size()) {
-            colonne = 0; // Reset column index to 0
-            ligne++;     // Move to the next row
-        }
-
-        // If the row index reaches the grid's row count, reset it or stop input
-        if (ligne >= gridPane.getRowConstraints().size()) {
-            ligne = 0; // Reset the row index to 0 or handle as needed
+        
+        if (colonne == 6) { // Vérifier si nous avons atteint la fin de la ligne après avoir ajouté une lettre.
+            isRowCompleted = true; // Empêcher toute saisie supplémentaire si 6 lettres sont saisies.
         }
     }
+
 
 
     private Label getLabelByRowColumn(int row, int column) {
@@ -112,31 +123,114 @@ public class GameSixLengthWordController {
 
     @FXML
     public void onSuprButtonClick(ActionEvent actionEvent) {
-        if (colonne > 0 || (colonne == 0 && ligne > 0)) {
-            // Ajuster les indices de ligne et de colonne pour la suppression
-            if (colonne == 0) {
-                // Si on est au début d'une ligne, passer à la fin de la ligne précédente
-                ligne--;
-                colonne = gridPane.getColumnConstraints().size() - 1;
-            } else {
-                // Sinon, simplement décrémenter l'index de colonne
-                colonne--;
-            }
-
-            // Supprimer la dernière lettre de currentAttempt si non vide
-            if (currentAttempt.length() > 0) {
-                currentAttempt.deleteCharAt(currentAttempt.length() - 1);
-            }
-
-            // Effacer la lettre du label correspondant
-            Label label = getLabelByRowColumn(ligne, colonne);
-            if (label != null) {
-                label.setText("");
-                label.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-font-weight: normal; " +
-                               "-fx-border-color: white; -fx-border-width: 0.5;");
-            }
+        if (colonne == 0 && ligne > 0) {
+            ligne--;
+            colonne = 5; // Placer le curseur à la fin de la ligne précédente
+        } else if (colonne > 0) {
+            colonne--;
+        }
+        
+        Label label = getLabelByRowColumn(ligne, colonne);
+        if (label != null) {
+            label.setText("");
+            label.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-font-weight: normal; " +
+                           "-fx-border-color: white; -fx-border-width: 0.5;");
+        }
+        
+        if (colonne < 6) {
+            isRowCompleted = false; // Réactiver la saisie de lettres si le nombre de lettres est inférieur à 6.
         }
     }
 
     
+    
+
+
+    @FXML
+    public void onValidButtonClick(ActionEvent event) {
+        if (!isRowCompleted) {
+            showAlert("Erreur", "Veuillez entrer 6 lettres avant de valider.");
+            return;
+        }
+
+        try {
+            StringBuilder wordBuilder = new StringBuilder();
+            for (int col = 0; col < 6; col++) {
+                Label label = getLabelByRowColumn(ligne, col);
+                if (label != null && label.getText() != null && !label.getText().isEmpty()) {
+                    wordBuilder.append(label.getText());
+                } else {
+                    showAlert("Erreur", "Veuillez compléter toutes les lettres de la ligne avant de valider.");
+                    return;
+                }
+            }
+
+            System.out.println("currentWord is: " + currentWord);
+            if (currentWord != null) {
+                System.out.println("Word to guess is: " + currentWord.getWord());
+            } else {
+                System.out.println("currentWord is null!");
+            }
+            
+            String guessedWordStr = wordBuilder.toString();
+            Word guessedWord = new Word(guessedWordStr);
+            
+            if (wordService.isWordInList(guessedWord)) {
+                if (gameService.makeGuess(guessedWord)) {
+                    showAlert("Félicitations!", "Vous avez trouvé le mot !");
+                    // Implement logic to restart the game or finish
+                } else {
+                    if (ligne < 5) {
+                        ligne++;
+                        colonne = 0;
+                        isRowCompleted = false;
+                        revealFirstCharacterOfWord();
+                    } else {
+                        showAlert("Fin du jeu", "Nombre maximum de tentatives atteint.");
+                        // Implement logic to restart the game or finish
+                    }
+                }
+            } else {
+                showAlert("Erreur", "Le mot n'existe pas dans la liste. Essayez encore sur la même ligne.");
+                clearCurrentRow();
+            }
+
+            isRowCompleted = false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur inattendue", "Une erreur est survenue: " + e.getMessage());
+        }
+    }
+
+
+
+    private void clearCurrentRow() {
+        for (int col = 0; col < 6; col++) {
+            Label label = getLabelByRowColumn(ligne, col);
+            if (label != null) {
+                label.setText("");
+            }
+        }
+        colonne = 0;
+    }
+
+    private void revealFirstCharacterOfWord() {
+        Label label = getLabelByRowColumn(ligne, 0);
+        if (label != null) {
+            label.setText(String.valueOf(currentWord.getWord().charAt(0)));
+            label.setStyle("-fx-background-color: blue; -fx-text-fill: white; -fx-font-weight: bold; " +
+                           "-fx-border-color: white; -fx-border-width: 1;");
+        }
+    }
+
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+
+
 }
