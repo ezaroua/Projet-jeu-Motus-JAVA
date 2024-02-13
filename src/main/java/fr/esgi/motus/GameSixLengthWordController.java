@@ -1,13 +1,17 @@
 package fr.esgi.motus;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import java.util.ArrayList;
@@ -164,21 +168,23 @@ public class GameSixLengthWordController {
                     return;
                 }
             }
-
+            
             System.out.println("currentWord is: " + currentWord);
             if (currentWord != null) {
                 System.out.println("Word to guess is: " + currentWord.getWord());
             } else {
                 System.out.println("currentWord is null!");
             }
-            
+
             String guessedWordStr = wordBuilder.toString();
+            // Afficher le mot saisi par l'utilisateur avant la vérification
+            showAlert("Mot saisi", "Vous avez saisi : " + guessedWordStr);
             Word guessedWord = new Word(guessedWordStr);
             
             if (wordService.isWordInList(guessedWord)) {
                 if (gameService.makeGuess(guessedWord)) {
-                    showAlert("Félicitations!", "Vous avez trouvé le mot !");
-                    // Implement logic to restart the game or finish
+                    showAlert("Félicitations!", "Vous avez réussi!");
+                    restartGame(); // Appel de la méthode pour redémarrer le jeu
                 } else {
                     if (ligne < 5) {
                         ligne++;
@@ -187,7 +193,7 @@ public class GameSixLengthWordController {
                         revealFirstCharacterOfWord();
                     } else {
                         showAlert("Fin du jeu", "Nombre maximum de tentatives atteint.");
-                        // Implement logic to restart the game or finish
+                        restartGame(); // Optionnel: redémarrer le jeu automatiquement ou demander à l'utilisateur
                     }
                 }
             } else {
@@ -201,8 +207,45 @@ public class GameSixLengthWordController {
             showAlert("Erreur inattendue", "Une erreur est survenue: " + e.getMessage());
         }
     }
+    
+    
+/*
+    private void restartGame() {
+        gridPane.getChildren().clear(); // Nettoyer la grille
+        currentRow = 0;
+        currentColumn = 0;
+        ligne = 0;
+        colonne = 0;
+        isRowCompleted = false; // Réinitialiser l'état de complétude de la ligne
+        initialize(); // Réinitialiser le jeu
+    }*/
 
+    
+    private void restartGame() {
+        try {
+            // Charger la nouvelle vue à partir de rejouer.fxml
+        	Parent root = FXMLLoader.load(getClass().getResource("/fr/esgi/motus/rejouer.fxml"));
 
+            
+            // Obtenir la scène actuelle à partir d'un composant (ici, gridPane)
+            Scene scene = gridPane.getScene(); // Assurez-vous que gridPane est accessible ici
+            
+            // Si gridPane n'est pas accessible directement (par exemple, si vous êtes dans un contexte statique ou si gridPane est privé), 
+            // vous devrez trouver une autre façon d'obtenir la Stage, comme passer la Stage courante à cette méthode ou la stocker dans une variable accessible.
+            
+            // Obtenir la stage à partir de la scène
+            Stage stage = (Stage) scene.getWindow();
+            
+            // Définir la nouvelle scène sur la stage
+            stage.setScene(new Scene(root));
+            
+            // Afficher la nouvelle vue
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur lors du chargement", "Impossible de charger la vue rejouer.fxml");
+        }
+    }
 
     private void clearCurrentRow() {
         for (int col = 0; col < 6; col++) {
@@ -230,7 +273,5 @@ public class GameSixLengthWordController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
 
 }

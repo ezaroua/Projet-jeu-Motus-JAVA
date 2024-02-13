@@ -26,7 +26,7 @@ public class GameServiceImpl implements IGameService {
         Attemp attempt = new Attemp(guessedWord);
         this.game.getAttempts().add(attempt);
 
-        if (guessedWord.getWord().equals(game.getWord().getWord())) {
+        if (((guessedWord.getWord()).toUpperCase()).equals((game.getWord().getWord()).toUpperCase())) {
             game.getScore().increaseScore();
             return true;
             //Todo change max attemps

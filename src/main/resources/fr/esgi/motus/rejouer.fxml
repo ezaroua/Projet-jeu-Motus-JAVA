@@ -43,7 +43,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.motus.PrimaryController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.motus.rejouerController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -86,16 +86,21 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #0B4769;" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="211.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="48.0" fitWidth="188.0" layoutX="234.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../fr/esgi/motus/img/LogoTusmo2.png"/>
+                  <Image url="@../../../../Pictures/Screenshots/Capture%20d'écran%202024-01-19%20212535.png" />
                </image>
             </ImageView>
-            <Button fx:id="boutonJouer" layoutX="233.0" layoutY="188.0" mnemonicParsing="false" onAction="#retrunToPlay" prefHeight="35.0" prefWidth="156.0" style="-fx-background-color: #FFFFFF;" text="Jouer" textFill="#0d4480">
+            <Button fx:id="btnRejouer" onAction="#returnToPlay" layoutX="244.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" style="-fx-background-color: #FFFFFF;" text="Rejouer" textFill="#0d4480">
                <font>
-                  <Font size="22.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
+            <ImageView accessibleRole="BUTTON" fitHeight="38.0" fitWidth="33.0" layoutX="66.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Downloads/icons8-home-50.png" />
+               </image>
+            </ImageView>
          </children>
     </AnchorPane>
   </children>
