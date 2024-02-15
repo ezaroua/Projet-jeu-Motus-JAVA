@@ -107,4 +107,40 @@ public final class WordRepoServiceImpl implements IWordRepoService {
         return false;
     }
 
+	public ArrayList<Word> getSixLengthWord() {
+		return sixLengthWord;
+	}
+
+	public void setSixLengthWord(ArrayList<Word> sixLengthWord) {
+		this.sixLengthWord = sixLengthWord;
+	}
+
+	public ArrayList<Word> getSevenLengthWord() {
+		return sevenLengthWord;
+	}
+
+	public void setSevenLengthWord(ArrayList<Word> sevenLengthWord) {
+		this.sevenLengthWord = sevenLengthWord;
+	}
+
+	public ArrayList<Word> getEightLengthWord() {
+		return eightLengthWord;
+	}
+
+	public void setEightLengthWord(ArrayList<Word> eightLengthWord) {
+		this.eightLengthWord = eightLengthWord;
+	}
+
+	public static String getSixLenghtWordUrl() {
+		return SIX_LENGHT_WORD_URL;
+	}
+
+	public static String getSevenLenghtWordUrl() {
+		return SEVEN_LENGHT_WORD_URL;
+	}
+
+	public static String getEightLenghtWordUrl() {
+		return EIGHT_LENGHT_WORD_URL;
+	}
+
 }

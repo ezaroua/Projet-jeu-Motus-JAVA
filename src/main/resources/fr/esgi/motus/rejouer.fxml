@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -88,19 +89,24 @@
          <children>
             <ImageView fitHeight="48.0" fitWidth="188.0" layoutX="234.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/Screenshots/Capture%20d'écran%202024-01-19%20212535.png" />
+                  <Image url="file:///C:/Users/User/eclipse-workspace/motusV2/src/main/resources/fr/esgi/motus/img/LogoTusmo.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnRejouer" onAction="#returnToPlay" layoutX="244.0" layoutY="180.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="152.0" style="-fx-background-color: #FFFFFF;" text="Rejouer" textFill="#0d4480">
+            <Button fx:id="btnRejouer" layoutX="244.0" layoutY="215.0" mnemonicParsing="false" onAction="#returnToPlay" prefHeight="25.0" prefWidth="152.0" style="-fx-background-color: #FFFFFF;" text="Rejouer" textFill="#0d4480">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <ImageView accessibleRole="BUTTON" fitHeight="38.0" fitWidth="33.0" layoutX="66.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../Downloads/icons8-home-50.png" />
-               </image>
-            </ImageView>
+            <Button fx:id="btnMenuPrincipal" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="27.0" mnemonicParsing="false" onAction="#ToMenuPrincipal" prefHeight="30.0" prefWidth="125.0" style="-fx-border-radius: 3; -fx-font-weight: bold; -fx-background-color: white;" text="Menu Principal" textAlignment="CENTER" textFill="#0b4769">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="137.0" prefHeight="33.0" prefWidth="313.0" text="Félicitation, le mot est correct" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
          </children>
     </AnchorPane>
   </children>

@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -43,7 +44,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.motus.SecondaryController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.motus.rejouerMotIncorrectController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -86,26 +87,31 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" style="-fx-background-color: #0B4769;" VBox.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="211.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="48.0" fitWidth="188.0" layoutX="234.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:///C:/Users/User/eclipse-workspace/motusV2/src/main/resources/fr/esgi/motus/img/LogoTusmo.png" />
                </image>
             </ImageView>
-            <Button fx:id="LevelOne" onAction="#PlayLevelOne" layoutX="234.0" layoutY="172.0" mnemonicParsing="false"  prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 1" textFill="#0d4480">
+            <Button fx:id="btnRejouer" layoutX="244.0" layoutY="215.0" mnemonicParsing="false" onAction="#returnToPlay" prefHeight="25.0" prefWidth="152.0" style="-fx-background-color: #FFFFFF;" text="Rejouer" textFill="#0d4480">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnRejouer" layoutX="244.0" layoutY="215.0" mnemonicParsing="false" onAction="#returnToPlay" prefHeight="25.0" prefWidth="152.0" style="-fx-background-color: #FFFFFF;" text="Rejouer" textFill="#0d4480">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnMenuPrincipal" alignment="CENTER" contentDisplay="CENTER" layoutX="39.0" layoutY="27.0" mnemonicParsing="false" onAction="#ToMenuPrincipal" prefHeight="30.0" prefWidth="125.0" style="-fx-border-radius: 3; -fx-font-weight: bold; -fx-background-color: white;" text="Menu Principal" textAlignment="CENTER" textFill="#0b4769">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="234.0" onAction="#PlayLevelTwo" layoutY="218.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 2" textAlignment="CENTER" textFill="#0d4480">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="137.0" prefHeight="33.0" prefWidth="549.0" text="Malheureusement, vous n'avez pas trouvé le mot correct ." textAlignment="CENTER" textFill="WHITE">
                <font>
-                  <Font size="14.0" />
+                  <Font size="20.0" />
                </font>
-            </Button>
-            <Button layoutX="234.0" onAction="#PlayLevelThree" layoutY="266.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 3" textFill="#0d4480">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
+            </Label>
          </children>
     </AnchorPane>
   </children>

@@ -17,4 +17,14 @@ public class PrimaryController {
         //stage.show();
     	 App.setRoot("secondary");
     }
+    
+    
+    @FXML
+    private void ToMenuPrincipal(ActionEvent event) {
+        try {
+            App.setRoot("primary");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

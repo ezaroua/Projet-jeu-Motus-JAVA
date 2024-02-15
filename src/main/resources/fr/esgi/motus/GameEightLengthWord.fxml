@@ -11,12 +11,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="800.0" style="-fx-background-color: #0B4769;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.motus.GameSixLengthWordController">
+<VBox fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="800.0" style="-fx-background-color: #0B4769;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.esgi.motus.GameEightLengthWordController">
    <children>
-      <AnchorPane minHeight="600.0" minWidth="800.0" prefHeight="547.0" prefWidth="804.0">
+      <AnchorPane prefHeight="547.0" prefWidth="804.0">
          <children>
             <GridPane fx:id="gridPane" layoutX="262.0" layoutY="77.0" style="-fx-border-color: white; -fx-border-width: 1;">
     <columnConstraints>
+        <ColumnConstraints prefWidth="35.0" />
+        <ColumnConstraints prefWidth="35.0" />
         <ColumnConstraints prefWidth="35.0" />
         <ColumnConstraints prefWidth="35.0" />
         <ColumnConstraints prefWidth="35.0" />
@@ -188,11 +190,6 @@
                   <Image url="file:///C:/Users/User/eclipse-workspace/motusV2/src/main/resources/fr/esgi/motus/img/LogoTusmo.png" />
                </image>
             </ImageView>
-            <Label layoutX="590.0" layoutY="42.0" prefHeight="47.0" prefWidth="66.0" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </children>

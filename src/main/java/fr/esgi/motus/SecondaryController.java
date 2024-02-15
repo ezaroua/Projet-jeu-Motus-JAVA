@@ -30,5 +30,17 @@ public class SecondaryController {
         
     	 App.setRoot("GameSixLengthWord");
     }
+	
+	@FXML
+    private void PlayLevelTwo(ActionEvent event) throws IOException {
+        
+    	 App.setRoot("GameSevenLengthWord");
+    }
+	
+	@FXML
+    private void PlayLevelThree(ActionEvent event) throws IOException {
+        
+    	 App.setRoot("GameEightLengthWord");
+    }
 
 }

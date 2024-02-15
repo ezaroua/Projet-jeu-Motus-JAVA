@@ -31,7 +31,7 @@ import fr.esgi.motus.service.impl.GameServiceImpl;
 
 
 
-public class GameSixLengthWordController {
+public class GameEightLengthWordController {
 
 	private GameServiceImpl gameService;
     private WordRepoServiceImpl wordRepoService;
@@ -61,7 +61,7 @@ public class GameSixLengthWordController {
         gameService = new GameServiceImpl(); // Ensure the game service is initialized
         wordService = WordRepoServiceImpl.getInstance(); // Ensure the word service is initialized
         wordService.importWords(); // Import words from the repository
-        currentWord = wordService.getRandomWordByLength(6); // Fetch a random 6-letter word
+        currentWord = wordService.getRandomWordByLength(8); // Fetch a random 8 letter word
         
         if (currentWord == null) {
             showAlert("Erreur", "Impossible de démarrer le jeu car aucun mot n'a été trouvé.");
@@ -73,7 +73,7 @@ public class GameSixLengthWordController {
         gridPane.getChildren().clear(); // Clear the grid before initializing
 
         for (int row = 0; row < 6; row++) {
-            for (int col = 0; col < 6; col++) {
+            for (int col = 0; col < 8; col++) {
                 Label label = new Label();
                 label.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE); // To fill the cell
                 label.setAlignment(Pos.CENTER); // Center the text in the label
@@ -113,7 +113,7 @@ public class GameSixLengthWordController {
             colonne++;
         }
         
-        if (colonne == 6) { // Vérifier si nous avons atteint la fin de la ligne après avoir ajouté une lettre.
+        if (colonne == 8) { // Vérifier si nous avons atteint la fin de la ligne après avoir ajouté une lettre.
             isRowCompleted = true; // Empêcher toute saisie supplémentaire si 6 lettres sont saisies.
         }
     }
@@ -137,7 +137,7 @@ public class GameSixLengthWordController {
             return;
         }
 
-        // Si nous sommes au-delà de la première colonne, permettre la suppression
+     
         colonne--; // Décrémenter la colonne pour revenir à la cellule précédente
         Label label = getLabelByRowColumn(ligne, colonne);
         if (label != null) {
@@ -147,7 +147,7 @@ public class GameSixLengthWordController {
         }
 
         // Réactiver la saisie si nécessaire
-        if (colonne < 6) {
+        if (colonne < 8) {
             isRowCompleted = false; // Assurer que l'utilisateur peut continuer à saisir des lettres si la ligne n'est pas complète
         }
     }
@@ -159,26 +159,26 @@ public class GameSixLengthWordController {
     @FXML
     public void onValidButtonClick(ActionEvent event) {
         if (!isRowCompleted) {
-            //showAlert("Erreur", "Veuillez entrer 6 lettres avant de valider.");
+            //showAlert("Erreur", "Veuillez entrer 8 lettres avant de valider.");
             Platform.runLater(() -> {
-        	    labelMsg.setText("Veuillez entrer 6 lettres avant de valider");
-        	    labelMsg.setStyle("-fx-text-fill: #FFFFFF;"); // Optionnel: changer la couleur du texte pour le succès
+        	    labelMsg.setText("Veuillez entrer 8 lettres avant de valider");
+        	    labelMsg.setStyle("-fx-text-fill: #FFFFFF;"); //changer la couleur du texte pour le succès
         	});
             return;
         }
 
         try {
             StringBuilder wordBuilder = new StringBuilder();
-            for (int col = 0; col < 6; col++) {
+            for (int col = 0; col < 8; col++) {
                 Label label = getLabelByRowColumn(ligne, col);
                 if (label != null && label.getText() != null && !label.getText().isEmpty()) {
                     wordBuilder.append(label.getText());
                 } else {
                 	Platform.runLater(() -> {
                 	    labelMsg.setText("Veuillez compléter toutes les lettres de la ligne avant de valider.");
-                	    labelMsg.setStyle("-fx-text-fill: #FFFFFF;"); // Optionnel: changer la couleur du texte pour le succès
+                	    labelMsg.setStyle("-fx-text-fill: #FFFFFF;"); //changer la couleur du texte pour le succès
                 	});
-                    //showAlert("Erreur", "Veuillez compléter toutes les lettres de la ligne avant de valider.");
+                    //showAlert("Erreur", "Veuillez compléter toutes les lettres de la ligne avant de valider.")
                     return;
                 }
             }
@@ -192,15 +192,12 @@ public class GameSixLengthWordController {
 
             String guessedWordStr = wordBuilder.toString();
             // Afficher le mot saisi par l'utilisateur avant la vérification
-            //showAlert("Mot saisi", "Vous avez saisi : " + guessedWordStr);
+            //showAlert("Mot saisi", "Vous avez saisi : " + guessedWordStr)
             Word guessedWord = new Word(guessedWordStr);
             
             if (wordService.isWordInList(guessedWord)) {
                 if (gameService.makeGuess(guessedWord)) {
-                	/*Platform.runLater(() -> {
-                	    labelMsg.setText("Félicitation, le mot est correct");
-                	    labelMsg.setStyle("-fx-text-fill: green;"); // Optionnel: changer la couleur du texte pour le succès
-                	});*/
+                	
                     App.setRoot("rejouer");
                 } else {
                     if (ligne < 5) {
@@ -210,13 +207,13 @@ public class GameSixLengthWordController {
                         highlightCommonLetters(guessedWordStr);
                         revealFirstCharacterOfWord();
                     } else {
-                        //showAlert("Fin du jeu", "Nombre maximum de tentatives atteint.");
+                        //showAlert("Fin du jeu", "Nombre maximum de tentatives atteint.")
                         //restartGame(); // Optionnel: redémarrer le jeu automatiquement ou demander à l'utilisateur
                         App.setRoot("rejouerMotIncorrect");
                     }
                 }
             } else {
-                //showAlert("Erreur", "Le mot n'existe pas dans la liste. Essayez encore sur la même ligne.");
+                //showAlert("Erreur", "Le mot n'existe pas dans la liste. Essayez encore sur la même ligne.")
                 
             	clearCurrentRow();
             	Platform.runLater(() -> {
@@ -267,7 +264,7 @@ public class GameSixLengthWordController {
 
 
     private void clearCurrentRowExceptFirstAndHighlighted() {
-        for (int col = 1; col < 6; col++) { // Commencer à partir de la deuxième colonne
+        for (int col = 1; col < 8; col++) { // Commencer à partir de la deuxième colonne
             Label label = getLabelByRowColumn(ligne, col);
             if (label != null && !label.getTextFill().equals(Color.RED)) {
                 label.setText(""); // Effacer le texte si la lettre n'est pas en rouge
@@ -277,49 +274,11 @@ public class GameSixLengthWordController {
             }
         }
     }
-    
-/*
-    private void restartGame() {
-        gridPane.getChildren().clear(); // Nettoyer la grille
-        currentRow = 0;
-        currentColumn = 0;
-        ligne = 0;
-        colonne = 0;
-        isRowCompleted = false; // Réinitialiser l'état de complétude de la ligne
-        initialize(); // Réinitialiser le jeu
-    }*/
 
-    /*
-    private void restartGame() {
-        try {
-            // Charger la nouvelle vue à partir de rejouer.fxml
-        	Parent root = FXMLLoader.load(getClass().getResource("/fr/esgi/motus/rejouer.fxml"));
-
-            
-            // Obtenir la scène actuelle à partir d'un composant (ici, gridPane)
-            Scene scene = gridPane.getScene(); // Assurez-vous que gridPane est accessible ici
-            
-            // Si gridPane n'est pas accessible directement (par exemple, si vous êtes dans un contexte statique ou si gridPane est privé), 
-            // vous devrez trouver une autre façon d'obtenir la Stage, comme passer la Stage courante à cette méthode ou la stocker dans une variable accessible.
-            
-            // Obtenir la stage à partir de la scène
-            Stage stage = (Stage) scene.getWindow();
-            
-            // Définir la nouvelle scène sur la stage
-            stage.setScene(new Scene(root));
-            
-            // Afficher la nouvelle vue
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert("Erreur lors du chargement", "Impossible de charger la vue rejouer.fxml");
-        }
-    }*/
 
     
-
     private void clearCurrentRow() {
-        for (int col = 0; col < 6; col++) {
+        for (int col = 0; col < 8; col++) {
             Label label = getLabelByRowColumn(ligne, col);
             if (label != null) {
                 label.setText("");

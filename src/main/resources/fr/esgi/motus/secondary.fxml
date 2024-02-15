@@ -88,20 +88,20 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="211.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/Screenshots/Capture%20d'écran%202024-01-19%20212535.png" />
+                  <Image url="file:///C:/Users/User/eclipse-workspace/motusV2/src/main/resources/fr/esgi/motus/img/LogoTusmo.png" />
                </image>
             </ImageView>
-            <Button fx:id="LevelOne" layoutX="234.0" layoutY="172.0" mnemonicParsing="false" onAction="#PlayLevelOne" prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 1" textFill="#0d4480">
+            <Button fx:id="LevelOne" onAction="#PlayLevelOne" layoutX="234.0" layoutY="172.0" mnemonicParsing="false"  prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 1" textFill="#0d4480">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="234.0" layoutY="218.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 2" textAlignment="CENTER" textFill="#0d4480">
+            <Button layoutX="234.0" onAction="#PlayLevelTwo" layoutY="218.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 2" textAlignment="CENTER" textFill="#0d4480">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button layoutX="234.0" layoutY="266.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 3" textFill="#0d4480">
+            <Button layoutX="234.0" onAction="#PlayLevelThree" layoutY="266.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="173.0" style="-fx-background-color: #FFFFFF;" text="Level 3" textFill="#0d4480">
                <font>
                   <Font size="14.0" />
                </font>

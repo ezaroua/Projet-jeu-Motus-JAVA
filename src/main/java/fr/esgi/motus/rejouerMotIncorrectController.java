@@ -1,18 +1,18 @@
 package fr.esgi.motus;
 
-import javafx.event.ActionEvent;
 import java.io.IOException;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class rejouerController {
+public class rejouerMotIncorrectController {
 
 	
 	@FXML
 	private Button btnRejouer;
 
-	
-	   
+	  
 	    @FXML
 	    private void returnToPlay(ActionEvent event) {
 	        try {
@@ -23,7 +23,6 @@ public class rejouerController {
 	        }
 	    }
 	    
-	    
 	    @FXML
 	    private void ToMenuPrincipal(ActionEvent event) {
 	        try {
@@ -32,13 +31,5 @@ public class rejouerController {
 	            e.printStackTrace();
 	        }
 	    }
-
 	    
-	    
-
-	
-
-
-    
-   
 }
